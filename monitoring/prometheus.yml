@@ -1,0 +1,16 @@
+global:
+    scrape_interval: 15s
+    evaluation_interval: 15s
+    external_labels:
+        monitor: 'nodecontainer-monitor'
+
+scrape_configs:
+    - job_name: 'prometheus'
+      scrape_interval: 5s
+      static_configs:
+          - targets: ['localhost:9090'] # Prometheus
+    - job_name: 'node resources'
+      scrape_interval: 15s
+      static_configs:
+          - targets: ['localhost:9100', # Node Exporter
+                      'localhost:8080'] # cAdvisor
